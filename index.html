@@ -118,6 +118,25 @@
 </head>
 <body>
 
+    <script>
+      // IIFE (立即执行函数表达式) 来创建一个私有作用域，防止污染全局
+      (function() {
+        // 【【【【【【【 在这里修改你们的专属密码！ 】】】】】】】
+        const password = "520"; // 例如: "ourlove", "happy20", "0728" 等
+
+        // 弹出提示框，让用户输入密码
+        const userInput = prompt("请公主殿下输入我们的悄悄话：");
+
+        // 检查密码是否正确
+        if (userInput !== password) {
+          // 如果密码错误
+          alert("暗号不对哦！不给你看~");
+          // 将页面内容替换为错误提示，并锁定页面
+          document.body.innerHTML = '<h1 style="text-align:center; padding-top: 50px; color: #d90429;">密码错误，页面已被锁定！</h1>';
+        }
+        // 如果密码正确，脚本什么也不做，页面会正常显示下面的内容
+      })();
+    </script>
     <div class="container">
         <header>
             <h1>Happy 20th Birthday!</h1>
@@ -128,12 +147,12 @@
             <section class="section">
                 <h2>我们的美好瞬间</h2>
                 <div class="gallery">
-                    <img src="https://via.placeholder.com/300x300.png?text=照片1" alt="我们的照片1">
-                    <img src="https://via.placeholder.com/300x300.png?text=照片2" alt="我们的照片2">
-                    <img src="https://via.placeholder.com/300x300.png?text=照片3" alt="我们的照片3">
-                    <img src="https://via.placeholder.com/300x300.png?text=照片4" alt="我们的照片4">
-                    <img src="https://via.placeholder.com/300x300.png?text=照片5" alt="我们的照片5">
-                    <img src="https://via.placeholder.com/300x300.png?text=照片6" alt="我们的照片6">
+                    <img src="photo1.jpg" alt="我们的照片1">
+                    <img src="photo2.jpg" alt="我们的照片2">
+                    <img src="photo3.jpg" alt="我们的照片3">
+                    <img src="photo4.jpg" alt="我们的照片4">
+                    <img src="photo5.jpg" alt="我们的照片5">
+                    <img src="photo6.jpg" alt="我们的照片6">
                 </div>
             </section>
 
@@ -162,6 +181,6 @@
         </footer>
     </div>
 
-    )，并替换音乐链接 -->
+    )，并替换音乐文件名 -->
     </body>
 </html>
