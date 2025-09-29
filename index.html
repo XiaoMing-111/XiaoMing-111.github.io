@@ -5,29 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>一份特别的生日祝福</title>
     <style>
-        /* --- 基础样式 --- */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-            margin: 0;
-            padding: 0;
-            background-color: #fde2e4;
-            color: #333;
-        }
-
-        /* --- 主内容容器 (默认隐藏) --- */
-        .container {
-            display: none; /* 默认隐藏，密码正确后显示 */
-            max-width: 800px;
-            width: 90%;
-            background-color: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            overflow: hidden;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        /* --- 密码输入界面样式 --- */
+        /* CSS样式部分保持不变，这里省略以节省空间，请确保你复制的是下面的完整代码 */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; margin: 0; padding: 0; background-color: #fde2e4; color: #333; }
+        .container { display: none; max-width: 800px; width: 90%; background-color: #ffffff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); margin: 20px auto; overflow: hidden; animation: fadeIn 1.5s ease-in-out; }
         #password-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(5px); }
         #password-modal { background-color: white; padding: 30px 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); text-align: center; width: 90%; max-width: 320px; }
         #password-modal h2 { margin-top: 0; margin-bottom: 20px; color: #333; font-size: 1.2em; }
@@ -36,8 +16,6 @@
         #password-button:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 106, 136, 0.4); }
         .shake { animation: shake 0.5s; }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); } 20%, 40%, 60%, 80% { transform: translateX(8px); } }
-
-        /* --- 页面主体内容样式 --- */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         header { background: linear-gradient(135deg, #ff9a8b 0%, #ff6a88 100%); color: white; padding: 40px 20px; text-align: center; }
         header h1 { margin: 0; font-size: 2.5em; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
@@ -91,7 +69,7 @@
         </footer>
     </div>
     
-    <audio src="our-song.mp3" autoplay loop></audio>
+    <audio id="bgm-music" src="our-song.mp3" loop></audio>
 
     <script>
         // 【【3. 修改】】在这里设置你们的专属密码！
@@ -102,7 +80,30 @@
         const passwordInput = document.getElementById('password-input');
         const passwordButton = document.getElementById('password-button');
         const mainContainer = document.querySelector('.container');
-        function checkPassword() { if (passwordInput.value === correctPassword) { passwordOverlay.style.display = 'none'; mainContainer.style.display = 'block'; } else { passwordModal.classList.add('shake'); passwordInput.value = ""; setTimeout(() => { passwordModal.classList.remove('shake'); }, 500); } }
+        const backgroundMusic = document.getElementById('bgm-music'); // 获取音乐元素
+
+        function checkPassword() {
+            if (passwordInput.value === correctPassword) {
+                // 密码正确
+                passwordOverlay.style.display = 'none';
+                mainContainer.style.display = 'block';
+                
+                // 【【【 新增的关键代码 】】】
+                // 尝试播放音乐
+                backgroundMusic.play().catch(error => {
+                    console.log("音乐播放被浏览器阻止，需要用户再次互动。错误信息:", error);
+                    // 即使播放失败，网站内容也会正常显示
+                });
+
+            } else {
+                // 密码错误
+                passwordModal.classList.add('shake');
+                passwordInput.value = "";
+                setTimeout(() => {
+                    passwordModal.classList.remove('shake');
+                }, 500);
+            }
+        }
         passwordButton.addEventListener('click', checkPassword);
         passwordInput.addEventListener('keyup', function(event) { if (event.key === "Enter") { checkPassword(); } });
     </script>
