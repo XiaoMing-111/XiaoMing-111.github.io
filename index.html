@@ -45,34 +45,10 @@
         main { padding: 30px; }
         .section { margin-bottom: 40px; }
         .section h2 { font-size: 1.8em; color: #d90429; border-bottom: 2px solid #fde2e4; padding-bottom: 10px; margin-bottom: 20px; }
-        
-        /* ============== 新增：单张特色照片样式 ============== */
-        .feature-photo {
-            text-align: center; /* 让内部元素居中 */
-            margin-bottom: 30px;
-        }
-        .feature-photo figure {
-            margin: 0;
-            display: inline-block; /* 让 figure 适应内部图片宽度 */
-            background: white;
-            padding: 10px; /* 白边宽度 */
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-        .feature-photo img {
-            max-width: 100%; /* 图片最大宽度为100%，确保响应式 */
-            height: auto;
-            display: block; /* 消除图片底部的空白间隙 */
-            border-radius: 4px;
-        }
-        .feature-photo figcaption {
-            margin-top: 15px;
-            font-size: 0.95em;
-            font-style: italic;
-            color: #777;
-        }
-        /* ================================================== */
-
+        .feature-photo { text-align: center; margin-bottom: 30px; }
+        .feature-photo figure { margin: 0; display: inline-block; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); }
+        .feature-photo img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
+        .feature-photo figcaption { margin-top: 15px; font-size: 0.95em; font-style: italic; color: #777; }
         .letter p { font-size: 1.1em; line-height: 1.8; text-indent: 2em; }
         footer { background-color: #fff1f2; text-align: center; padding: 20px; font-size: 0.9em; color: #555; }
         @media (max-width: 600px) { header h1 { font-size: 2em; } header p { font-size: 1em; } .section h2 { font-size: 1.5em; } }
@@ -98,11 +74,11 @@
                 <h2>我们的美好瞬间</h2>
                 <div class="feature-photo">
                     <figure>
-                        <img src="placeholder.jpg" alt="我们最珍贵的合影">
+                        <img src="our-moment.gif" alt="我们最珍贵的合影">
                         <figcaption>摄于我们第一次去海边的那个午后</figcaption>
                     </figure>
                 </div>
-                </section>
+            </section>
             <section class="section">
                 <h2>一封给你的信</h2>
                 <div class="letter">
@@ -115,8 +91,12 @@
         </footer>
     </div>
     
+    <audio src="our-song.mp3" autoplay loop></audio>
+
     <script>
-        const correctPassword = "520"; // 【【修改】】在这里设置密码
+        // 【【3. 修改】】在这里设置你们的专属密码！
+        const correctPassword = "520";
+
         const passwordOverlay = document.getElementById('password-overlay');
         const passwordModal = document.getElementById('password-modal');
         const passwordInput = document.getElementById('password-input');
